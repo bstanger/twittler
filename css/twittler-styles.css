@@ -8,14 +8,34 @@ body button {
   margin-top: 50px;
 }
 .twittler__sidebar {
-  flex: 1 1 30%;
+  flex: 1 1 20%;
   background-color: #fff;
+  padding: 30px 20px 0;
 }
 .twittler__main {
-  flex: 1 1 70%;
+  flex: 1 1 80%;
   height: calc(100vh - 50px);
   overflow: auto;
-  margin: 10px 0;
+}
+.twittler__userimg {
+  float: left;
+  background: url("../images/indiana-jones.jpg") no-repeat center;
+  background-size: cover;
+  height: 80px;
+  width: 80px;
+  margin: 0 12px 6px 0;
+  border-radius: 100%;
+}
+.twittler__sidebar-username {
+  margin-bottom: 4px;
+}
+.twittler__sidebar-handle {
+  margin: 0;
+  font-weight: normal;
+}
+.twittler__sidebar-headline {
+  margin-top: 20px;
+  font-weight: normal;
 }
 .twittler__header {
   position: fixed;
@@ -53,6 +73,7 @@ body button {
 }
 .twittler__feed {
   padding: 0 20px 10px;
+  margin: 10px 0;
 }
 .twittler__tweet {
   min-height: 30px;
@@ -61,6 +82,13 @@ body button {
   background-color: #fff;
   border-bottom: 2px solid #198c8c;
   color: #0b1a4d;
+}
+.twittler__tweet-userimg {
+  float: left;
+  height: 40px;
+  width: 40px;
+  margin-right: 14px;
+  border-radius: 100%;
 }
 .twittler__tweet-user {
   font-weight: 600;
@@ -88,4 +116,21 @@ body button {
 .twittler__load-more-btn:hover {
   background-color: #003366;
   border-color: #003366;
+}
+.twittler__user-tweets-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 160px;
+  background-color: #198c8c;
+  color: #fff;
+}
+.twittler__user-img-header {
+  height: 80px;
+  width: 80px;
+  border-radius: 100%;
+  margin: 12px;
+}
+.twittler__user-name-header {
+  margin: 0;
 }
