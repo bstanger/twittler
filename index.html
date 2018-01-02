@@ -15,50 +15,78 @@
         $feed.html('');
         var displayedTweets = [];
 
+        // Go to specific user's collection of tweets
+        var filterUserTweets = function(){
+          var userName = $(this).data('user-name');
+          var $tweets =  $('.js-tweet');
+
+          // Hide all / show filtered
+          $tweets.fadeOut();
+          $tweets.find("[data-user-name*=" + userName + "]").closest('.js-tweet').fadeIn();
+          $('.js-load-more').hide();
+
+          // Add user header
+          if(!$('.js-user-tweets-header').length){
+            var $userHeader = $('<div class="twittler__user-tweets-header js-user-tweets-header"><img class="twittler__user-img-header js-user-img-header"><h2 class="twittler__user-name-header js-user-name-header"></h2></div>');
+            $userHeader.find('.js-user-img-header').attr('src', userImgs[userName]);
+            $userHeader.find('.js-user-name-header').text('@' + userName);
+            $('.js-feed').before($userHeader);
+          }
+
+          $('.js-twittler-main').scrollTop(0);
+        }
+
         var displayTweets = function(){
           var index = streams.home.length - 1;
           while(index >= 0){
             var tweet = streams.home[index];
             if(!displayedTweets.includes(tweet)){
-              var $tweet = $('<div class="twittler__tweet js-tweet"><span class="twittler__tweet-user js-tweet-user" data-user-name=""></span> • <span class="twittler__tweet-time js-tweet-time"></span><span class="twittler__tweet-msg js-tweet-msg"></span></div>');
+              var $tweet = $('<div class="twittler__tweet js-tweet"><img class="twittler__tweet-userimg js-tweet-userimg"><span class="twittler__tweet-user js-tweet-user" data-user-name=""></span> • <span class="twittler__tweet-time js-tweet-time"></span><span class="twittler__tweet-msg js-tweet-msg"></span></div>');
+              $tweet.find('.js-tweet-userimg').attr('src', tweet.userimg);
               $tweet.find('.js-tweet-user').text('@' + tweet.user);
               $tweet.find('.js-tweet-user').attr('data-user-name', tweet.user.toString());
-              $tweet.find('.js-tweet-time').text(tweet.created_at.toString().split(' GMT')[0]);
+              $tweet.find('.js-tweet-time').text(tweet.created_at.toString().split(' GMT')[0]); // May not always work
               $tweet.find('.js-tweet-msg').text(tweet.message);
               $tweet.appendTo($feed);
               displayedTweets.push(tweet);
             }
             index -= 1;
           }
+
+          // Add click event for user name
+          $('.js-tweet-user').on('click', filterUserTweets);
+
+          // Add Load More button at end and click event for it
           $feed.append('<button class="twittler__load-more-btn js-load-more">Load More</button>');
+          $('.js-load-more').on('click', function(){
+            $(this).remove();
+            displayTweets();
+          })
+
         };
 
         displayTweets();
-
-        $('.js-load-more').on('click', function(){
-          $(this).remove();
-          displayTweets();
-        })
-
-        $('.js-tweet-user').on('click', function(){
-          var userName = $(this).data('user-name');
-          var $tweets =  $('.js-tweet');
-          $tweets.fadeOut();
-          $tweets.find("[data-user-name*=" + userName + "]").closest('.js-tweet').fadeIn();
-        })
-
       });
     </script>
+
     <header class="twittler__header">
         <a href="" class="twittler__logo">Twittler</a>
         <a href="" class="twittler__home">Home</a>
     </header>
 
     <section class="twittler__body">
-      <aside class="twittler__sidebar"></aside>
-      <section class="twittler__main">
+
+      <aside class="twittler__sidebar">
+        <span class="twittler__userimg"></span>
+        <h2 class="twittler__sidebar-username">Indiana Jones</h2>
+        <h4 class="twittler__sidebar-handle">@indianaJones</h4>
+        <h4 class="twittler__sidebar-headline">Archaeology, history, treasure hunting, museums</h4>
+      </aside>
+
+      <section class="twittler__main js-twittler-main">
         <section class="twittler__feed js-feed"></section>
       </section>
+      
     </section>
 
   </body>
