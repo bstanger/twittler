@@ -20,8 +20,9 @@
           while(index >= 0){
             var tweet = streams.home[index];
             if(!displayedTweets.includes(tweet)){
-              var $tweet = $('<div class="twittler__tweet"><span class="twittler__tweet-user js-tweet-user"></span> • <span class="twittler__tweet-time js-tweet-time"></span><span class="twittler__tweet-msg js-tweet-msg"></span></div>');
+              var $tweet = $('<div class="twittler__tweet js-tweet"><span class="twittler__tweet-user js-tweet-user" data-user-name=""></span> • <span class="twittler__tweet-time js-tweet-time"></span><span class="twittler__tweet-msg js-tweet-msg"></span></div>');
               $tweet.find('.js-tweet-user').text('@' + tweet.user);
+              $tweet.find('.js-tweet-user').attr('data-user-name', tweet.user.toString());
               $tweet.find('.js-tweet-time').text(tweet.created_at.toString().split(' GMT')[0]);
               $tweet.find('.js-tweet-msg').text(tweet.message);
               $tweet.appendTo($feed);
@@ -40,15 +41,17 @@
         })
 
         $('.js-tweet-user').on('click', function(){
-          var userName = $(this).text();
-
+          var userName = $(this).data('user-name');
+          var $tweets =  $('.js-tweet');
+          $tweets.fadeOut();
+          $tweets.find("[data-user-name*=" + userName + "]").closest('.js-tweet').fadeIn();
         })
 
       });
     </script>
     <header class="twittler__header">
-        <a href="#" class="twittler__logo">Twittler</a>
-        <a href="#" class="twittler__home">Home</a>
+        <a href="" class="twittler__logo">Twittler</a>
+        <a href="" class="twittler__home">Home</a>
     </header>
 
     <section class="twittler__body">
