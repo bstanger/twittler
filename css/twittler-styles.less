@@ -1,0 +1,122 @@
+// VARIABLES ///////////////
+
+@lightest-blue: #e7f5f7;
+@lighter-blue: #b0e0e6;
+@blue: #198c8c;
+@darker-blue: #003366;
+@darkest-blue: #0b1a4d;
+
+@header-height: 50px;
+
+
+/// LAYOUT /////////////////////////
+
+body,
+body button {
+	font-family: 'Alegreya Sans', sans-serif;
+}
+
+.twittler__body {
+	display: flex; // Add vprefixes?
+	background-color: @lightest-blue;
+	margin-top: @header-height;
+}
+
+.twittler__sidebar {
+	flex: 1 1 30%;
+	background-color: #fff;
+}
+
+.twittler__main {
+	flex: 1 1 70%;
+	margin: 10px 0;
+}
+
+/// HEADER /////////////////////////
+
+.twittler__header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: @header-height;
+	background-color: @darkest-blue;
+}
+
+.twittler__logo {
+	float: left;
+	line-height: @header-height;
+	border: 0;
+	padding: 0 0 0 20px;
+	font-family: 'Berkshire Swash', cursive;
+	font-size: 2rem;
+	background-color: transparent;
+	color: #fff;
+	text-decoration: none;
+
+	&:hover {
+		color: @lightest-blue;
+	}
+}
+
+.twittler__home {
+	float: right;
+	line-height: @header-height;
+	border: 0;
+	padding: 0 20px 0 0;
+	background-color: transparent;
+	color: #fff;
+	text-decoration: none;
+
+	&:hover {
+		color: @lightest-blue;
+	}
+}
+
+/// FEED /////////////////////////
+
+.twittler__feed {
+	padding: 0 20px 10px;
+}
+
+.twittler__tweet {
+	min-height: 30px;
+	padding: 8px;
+	margin-bottom: 20px;
+	background-color: #fff;
+	border-bottom: 2px solid @blue;
+	color: @darkest-blue;
+	//box-shadow: 0px 5px 25px 5px @lightest-blue;
+}
+
+.twittler__tweet-user {
+	font-weight: 600;
+	cursor: pointer;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.twittler__tweet-msg {
+	display: block;
+	margin: 5px 0;
+}
+
+.twittler__load-more-btn {
+	display: block;
+	height: 40px;
+	width: 100%;
+	line-height: 40px;
+	color: @lightest-blue;
+	background-color: @blue;
+	border: 1px solid @blue;
+	border-radius: 3px;
+	transition: background-color 400ms;
+	cursor: pointer;
+
+	&:hover {
+		background-color: @darker-blue;
+		border-color: @darker-blue;
+	}
+}

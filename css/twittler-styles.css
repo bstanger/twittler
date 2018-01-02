@@ -1,0 +1,89 @@
+body,
+body button {
+  font-family: 'Alegreya Sans', sans-serif;
+}
+.twittler__body {
+  display: flex;
+  background-color: #e7f5f7;
+  margin-top: 50px;
+}
+.twittler__sidebar {
+  flex: 1 1 30%;
+  background-color: #fff;
+}
+.twittler__main {
+  flex: 1 1 70%;
+  margin: 10px 0;
+}
+.twittler__header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background-color: #0b1a4d;
+}
+.twittler__logo {
+  float: left;
+  line-height: 50px;
+  border: 0;
+  padding: 0 0 0 20px;
+  font-family: 'Berkshire Swash', cursive;
+  font-size: 2rem;
+  background-color: transparent;
+  color: #fff;
+  text-decoration: none;
+}
+.twittler__logo:hover {
+  color: #e7f5f7;
+}
+.twittler__home {
+  float: right;
+  line-height: 50px;
+  border: 0;
+  padding: 0 20px 0 0;
+  background-color: transparent;
+  color: #fff;
+  text-decoration: none;
+}
+.twittler__home:hover {
+  color: #e7f5f7;
+}
+.twittler__feed {
+  padding: 0 20px 10px;
+}
+.twittler__tweet {
+  min-height: 30px;
+  padding: 8px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border-bottom: 2px solid #198c8c;
+  color: #0b1a4d;
+}
+.twittler__tweet-user {
+  font-weight: 600;
+  cursor: pointer;
+}
+.twittler__tweet-user:hover {
+  text-decoration: underline;
+}
+.twittler__tweet-msg {
+  display: block;
+  margin: 5px 0;
+}
+.twittler__load-more-btn {
+  display: block;
+  height: 40px;
+  width: 100%;
+  line-height: 40px;
+  color: #e7f5f7;
+  background-color: #198c8c;
+  border: 1px solid #198c8c;
+  border-radius: 3px;
+  transition: background-color 400ms;
+  cursor: pointer;
+}
+.twittler__load-more-btn:hover {
+  background-color: #003366;
+  border-color: #003366;
+}
