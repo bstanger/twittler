@@ -13,6 +13,8 @@ body button {
 }
 .twittler__main {
   flex: 1 1 70%;
+  height: calc(100vh - 50px);
+  overflow: auto;
   margin: 10px 0;
 }
 .twittler__header {
@@ -76,7 +78,7 @@ body button {
   height: 40px;
   width: 100%;
   line-height: 40px;
-  color: #e7f5f7;
+  color: #fff;
   background-color: #198c8c;
   border: 1px solid #198c8c;
   border-radius: 3px;
