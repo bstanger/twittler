@@ -2,6 +2,7 @@
 <html>
   <head>
     <script src="jquery.js"></script>
+    <script src="timeago.min.js"></script>
     <script src="data_generator.js"></script>
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/twittler-styles.css">
@@ -11,6 +12,7 @@
   <body>
     <script>
       $(document).ready(function(){
+
         var $feed = $('.js-feed');
         $feed.html('');
         var displayedTweets = [];
@@ -45,7 +47,7 @@
               $tweet.find('.js-tweet-userimg').attr('src', tweet.userimg);
               $tweet.find('.js-tweet-user').text('@' + tweet.user);
               $tweet.find('.js-tweet-user').attr('data-user-name', tweet.user.toString());
-              $tweet.find('.js-tweet-time').text(tweet.created_at.toString().split(' GMT')[0]); // May not always work
+              $tweet.find('.js-tweet-time').text(timeago().format(tweet.created_at));
               $tweet.find('.js-tweet-msg').text(tweet.message);
               $tweet.appendTo($feed);
               displayedTweets.push(tweet);
@@ -86,7 +88,7 @@
       <section class="twittler__main js-twittler-main">
         <section class="twittler__feed js-feed"></section>
       </section>
-      
+
     </section>
 
   </body>
