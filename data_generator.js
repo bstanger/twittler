@@ -7,10 +7,15 @@
 window.streams = {};
 streams.home = [];
 streams.users = {};
+userImgs = {};
 streams.users.shawndrost = [];
+userImgs['shawndrost']= "images/shawn-drost.jpg";
 streams.users.sharksforcheap = [];
+userImgs['sharksforcheap'] = "images/sharks-for-cheap.jpg";
 streams.users.mracus = [];
+userImgs['mracus'] = "images/m-racus.jpg";
 streams.users.douglascalhoun = [];
+userImgs['douglascalhoun'] = "images/douglas-calhoun.jpg";
 window.users = Object.keys(streams.users);
 
 // utility function for adding tweets to our data structures
@@ -41,6 +46,7 @@ var randomMessage = function(){
 var generateRandomTweet = function(){
   var tweet = {};
   tweet.user = randomElement(users);
+  tweet.userimg = userImgs[tweet.user];
   tweet.message = randomMessage();
   tweet.created_at = new Date();
   addTweet(tweet);
