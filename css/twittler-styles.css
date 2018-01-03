@@ -13,6 +13,8 @@ body button {
   padding: 30px 20px 0;
 }
 .twittler__main {
+  display: flex;
+  flex-direction: column;
   flex: 1 1 80%;
   height: calc(100vh - 50px);
   overflow: auto;
@@ -71,15 +73,51 @@ body button {
 .twittler__home:hover {
   color: #e7f5f7;
 }
+.twittler__tweet-input {
+  flex: 0 0 55px;
+  margin: 10px 20px 30px 20px;
+  padding: 10px;
+  color: #0b1a4d;
+  box-shadow: 0px 5px 25px 5px #b0e0e6;
+}
+.twittler__twittle-btn {
+  display: block;
+  flex: 0 0 40px;
+  margin: -30px 20px 30px;
+  line-height: 40px;
+  color: #fff;
+  background-color: #198c8c;
+  border: 1px solid #198c8c;
+  border-radius: 3px;
+  transition: background-color 400ms;
+  cursor: pointer;
+}
+.twittler__twittle-btn:hover {
+  background-color: #003366;
+  border-color: #003366;
+}
+.twittler__success-msg {
+  flex: 0 0 50px;
+  background-color: #198c8c;
+  color: #fff;
+  padding: 20px;
+  line-height: 50px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 600ms;
+}
+.twittler__success-msg.is-faded-in {
+  opacity: 1;
+}
 .twittler__feed {
-  padding: 0 20px 10px;
-  margin: 10px 0;
+  padding: 10px 20px;
 }
 .twittler__tweet {
   min-height: 30px;
   padding: 8px;
   margin-bottom: 20px;
   background-color: #fff;
+  border: 1px solid #b0e0e6;
   border-bottom: 2px solid #198c8c;
   color: #0b1a4d;
 }

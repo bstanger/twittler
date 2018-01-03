@@ -29,6 +29,8 @@ body button {
 }
 
 .twittler__main {
+	display: flex;
+	flex-direction: column;
 	flex: 1 1 80%;
 	height: ~"calc(100vh - @{header-height})";
 	overflow: auto;
@@ -101,11 +103,59 @@ body button {
 	}
 }
 
+/// TWEET INPUT //////////////////
+
+.twittler__tweet-input {
+	flex: 0 0 55px;
+	margin: 10px 20px 30px 20px;
+	padding: 10px;
+	color: @darkest-blue;
+	box-shadow: 0px 5px 25px 5px @lighter-blue;
+	opacity: 0;
+	transition: opacity 600ms;
+
+	&.is-faded-in {
+		opacity: 1;
+	}
+}
+
+.twittler__twittle-btn {
+	display: block;
+	flex: 0 0 40px;
+	margin: -30px 20px 30px;
+	line-height: 40px;
+	color: #fff;
+	background-color: @blue;
+	border: 1px solid @blue;
+	border-radius: 3px;
+	transition: background-color 400ms;
+	cursor: pointer;
+
+	&:hover {
+		background-color: @darker-blue;
+		border-color: @darker-blue;
+	}
+}
+
+.twittler__success-msg {
+	flex: 0 0 50px;
+	background-color: @blue;
+	color: #fff;
+	padding: 20px;
+	line-height: 50px;
+	text-align: center;
+	opacity: 0;
+	transition: opacity 600ms;
+
+	&.is-faded-in {
+		opacity: 1;
+	}
+}
+
 /// FEED /////////////////////////
 
 .twittler__feed {
-	padding: 0 20px 10px;
-	margin: 10px 0;
+	padding: 10px 20px;
 }
 
 .twittler__tweet {
@@ -113,9 +163,9 @@ body button {
 	padding: 8px;
 	margin-bottom: 20px;
 	background-color: #fff;
+	border: 1px solid @lighter-blue;
 	border-bottom: 2px solid @blue;
 	color: @darkest-blue;
-	//box-shadow: 0px 5px 25px 5px @lightest-blue;
 }
 
 .twittler__tweet-userimg {
