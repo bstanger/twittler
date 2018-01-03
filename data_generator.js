@@ -16,7 +16,10 @@ streams.users.mracus = [];
 userImgs['mracus'] = "images/m-racus.jpg";
 streams.users.douglascalhoun = [];
 userImgs['douglascalhoun'] = "images/douglas-calhoun.jpg";
+streams.users.indianajones = [];
+userImgs['indianajones'] = "images/indiana-jones.jpg";
 window.users = Object.keys(streams.users);
+visitor = 'indianajones';
 
 // utility function for adding tweets to our data structures
 var addTweet = function(newTweet){
@@ -64,12 +67,16 @@ scheduleNextTweet();
 
 // utility function for letting students add "write a tweet" functionality
 // (note: not used by the rest of this file.)
-var writeTweet = function(message){
+var writeTweet = function(message, callback){
   if(!visitor){
     throw new Error('set the global visitor property!');
   }
   var tweet = {};
   tweet.user = visitor;
+  tweet.userimg = userImgs[visitor];
   tweet.message = message;
   addTweet(tweet);
+  if(callback && typeof callback === "function"){
+    callback();
+  }
 };

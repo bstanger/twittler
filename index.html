@@ -12,7 +12,6 @@
   <body>
     <script>
       $(document).ready(function(){
-
         var $feed = $('.js-feed');
         $feed.html('');
         var displayedTweets = [];
@@ -23,6 +22,7 @@
           var $tweets =  $('.js-tweet');
 
           // Hide all / show filtered
+          $('.js-tweet-input, .js-twittle-btn').remove();
           $tweets.fadeOut();
           $tweets.find("[data-user-name*=" + userName + "]").closest('.js-tweet').fadeIn();
           $('.js-load-more').hide();
@@ -39,6 +39,7 @@
         }
 
         var displayTweets = function(){
+          if($('.js-load-more').length) $('.js-load-more').remove();
           var index = streams.home.length - 1;
           while(index >= 0){
             var tweet = streams.home[index];
@@ -60,14 +61,44 @@
 
           // Add Load More button at end and click event for it
           $feed.append('<button class="twittler__load-more-btn js-load-more">Load More</button>');
-          $('.js-load-more').on('click', function(){
-            $(this).remove();
-            displayTweets();
-          })
+          $('.js-load-more').on('click', displayTweets);
+        };
 
+        var showTwittleBtn = function(){
+          if($('.js-tweet-input').val().length === 0){
+            $('.js-twittle-btn').remove();
+          } else if (!$('.js-twittle-btn').length) {
+            $(this).after('<button class="twittler__twittle-btn js-twittle-btn">Twittle</button>');
+            $('.js-twittle-btn').on('click', submitTwittle);
+          }
+        };
+
+        var submitTwittle = function(){
+            var message = $('.js-tweet-input').val();
+            if(!message.length) return;
+            writeTweet(message, displaySuccessMsg);
+        };
+
+        var displaySuccessMsg = function(){
+          $('.js-tweet-input, .js-twittle-btn').remove();
+          $('.js-feed').before('<textarea class="twittler__tweet-input js-tweet-input" placeholder="Type your twittle here" rows="5"  cols="40"></textarea>');
+          $('.js-tweet-input').before('<div class="twittler__success-msg js-success">Message successfully twittled!</div>');
+          $('.js-tweet-input').addClass("is-faded-in");
+          $('.js-success').addClass("is-faded-in");
+
+          setTimeout(function(){
+            $('.js-success').slideUp("slow");
+            $('.js-tweet-input').on('keyup', showTwittleBtn);
+          }, 3000);
+
+          displayTweets();
         };
 
         displayTweets();
+
+        // On entering twittle to input, show button and attach event handler
+        $('.js-tweet-input').on('keyup', showTwittleBtn);
+
       });
     </script>
 
@@ -86,6 +117,7 @@
       </aside>
 
       <section class="twittler__main js-twittler-main">
+        <textarea class="twittler__tweet-input js-tweet-input is-faded-in" placeholder="Type your twittle here" rows="5"  cols="40"></textarea>
         <section class="twittler__feed js-feed"></section>
       </section>
 
