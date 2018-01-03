@@ -14,6 +14,7 @@
       $(document).ready(function(){
         var $feed = $('.js-feed');
         $feed.html('');
+        $feed.prepend('<div class="js-feed-new"></div>');
         var displayedTweets = [];
 
         // Go to specific user's collection of tweets
@@ -50,17 +51,20 @@
               $tweet.find('.js-tweet-user').attr('data-user-name', tweet.user.toString());
               $tweet.find('.js-tweet-time').text(timeago().format(tweet.created_at));
               $tweet.find('.js-tweet-msg').text(tweet.message);
-              $tweet.appendTo($feed);
+              $tweet.appendTo($(".js-feed-new").first());
               displayedTweets.push(tweet);
             }
             index -= 1;
           }
 
+          // Set up new wrapper div for added twittles
+          $('<div class="js-feed-new"></div>').prependTo($feed);
+
           // Add click event for user name
           $('.js-tweet-user').on('click', filterUserTweets);
 
           // Add Load More button at end and click event for it
-          $feed.append('<button class="twittler__load-more-btn js-load-more">Load More</button>');
+          $feed.prepend('<button class="twittler__load-more-btn js-load-more">Load More</button>');
           $('.js-load-more').on('click', displayTweets);
         };
 
